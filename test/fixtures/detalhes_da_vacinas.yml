@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_da_vacina: MyString
+  efeitos_colaterais: MyText
+  interacoes_medicamentosas: MyText
+  permitidas: MyString
+
+two:
+  nome_da_vacina: MyString
+  efeitos_colaterais: MyText
+  interacoes_medicamentosas: MyText
+  permitidas: MyString
