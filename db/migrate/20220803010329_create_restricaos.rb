@@ -7,7 +7,7 @@ class CreateRestricaos < ActiveRecord::Migration[7.0]
       t.integer :segunda_dose
       t.integer :terceira_dose
       t.integer :quarta_dose
-      
+
       t.timestamps
     end
   end
