@@ -7,15 +7,5 @@ env:
 
 jobs:
   rubocop:
-    name: Rubocop
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 3.1.x
-      - name: Setup Rubocop
-        run: |
-          gem install rubocop 
-      - name: Rubocop Report
-        run: rubocop --color
+    name: RuboCop Linter Action
+    uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
