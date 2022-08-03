@@ -72,3 +72,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem 'bcrypt'
+gem 'jwt'
+gem 'react-rails'
