@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cpf: MyString
+  idade: 1
+  grupo_risco: false
+  comorbidade: MyText
+  telefone: MyString
+  email: MyString
+
+two:
+  nome: MyString
+  cpf: MyString
+  idade: 1
+  grupo_risco: false
+  comorbidade: MyText
+  telefone: MyString
+  email: MyString
