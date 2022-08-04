@@ -42,12 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
   end
 
   create_table 'inventarios', force: :cascade do |t|
+    t.integer 'quantidade'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.bigint 'local_de_aplicacao_id', null: false
-    t.bigint 'Vacina_id', null: false
-    t.index ['Vacina_id'], name: 'index_inventarios_on_Vacina_id'
+    t.bigint 'vacina_id', null: false
     t.index ['local_de_aplicacao_id'], name: 'index_inventarios_on_local_de_aplicacao_id'
+    t.index ['vacina_id'], name: 'index_inventarios_on_vacina_id'
   end
 
   create_table 'local_de_aplicacao_inventarios', force: :cascade do |t|
@@ -128,7 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
   add_foreign_key 'imunizantes', 'local_de_aplicacaos'
   add_foreign_key 'imunizantes', 'lotes'
   add_foreign_key 'imunizantes', 'pessoas', column: 'paciente_id'
-  add_foreign_key 'inventarios', 'detalhes_da_vacinas', column: 'Vacina_id'
+  add_foreign_key 'inventarios', 'detalhes_da_vacinas', column: 'vacina_id'
   add_foreign_key 'inventarios', 'local_de_aplicacaos'
   add_foreign_key 'local_de_aplicacaos', 'localidades', column: 'endereco_id'
   add_foreign_key 'local_de_aplicacaos', 'pessoas', column: 'responsavel_id'
