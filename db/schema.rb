@@ -1,5 +1,6 @@
-# rubocop:disable Metrics/BlockLength
 # frozen_string_literal: true
+
+# rubocop:disable Metrics/BlockLength
 
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -13,9 +14,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
+ActiveRecord::Schema[7.0].define(version: 20_220_805_002_458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'active_admin_comments', force: :cascade do |t|
+    t.string 'namespace'
+    t.text 'body'
+    t.string 'resource_type'
+    t.bigint 'resource_id'
+    t.string 'author_type'
+    t.bigint 'author_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index %w[author_type author_id], name: 'index_active_admin_comments_on_author'
+    t.index ['namespace'], name: 'index_active_admin_comments_on_namespace'
+    t.index %w[resource_type resource_id], name: 'index_active_admin_comments_on_resource'
+  end
 
   create_table 'detalhes_da_vacinas', force: :cascade do |t|
     t.string 'nome_da_vacina'
@@ -53,12 +68,13 @@ ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
   end
 
   create_table 'inventarios', force: :cascade do |t|
+    t.integer 'quantidade'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.bigint 'local_de_aplicacao_id', null: false
-    t.bigint 'Vacina_id', null: false
-    t.index ['Vacina_id'], name: 'index_inventarios_on_Vacina_id'
+    t.bigint 'vacina_id', null: false
     t.index ['local_de_aplicacao_id'], name: 'index_inventarios_on_local_de_aplicacao_id'
+    t.index ['vacina_id'], name: 'index_inventarios_on_vacina_id'
   end
 
   create_table 'local_de_aplicacao_inventarios', force: :cascade do |t|
@@ -107,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
   create_table 'pessoas', force: :cascade do |t|
     t.string 'nome'
     t.string 'cpf'
-    t.integer 'idade'
+    t.date 'data_nascimento'
     t.boolean 'grupo_risco'
     t.text 'comorbidade'
     t.string 'telefone'
@@ -139,7 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_803_221_446) do
   add_foreign_key 'imunizantes', 'local_de_aplicacaos'
   add_foreign_key 'imunizantes', 'lotes'
   add_foreign_key 'imunizantes', 'pessoas', column: 'paciente_id'
-  add_foreign_key 'inventarios', 'detalhes_da_vacinas', column: 'Vacina_id'
+  add_foreign_key 'inventarios', 'detalhes_da_vacinas', column: 'vacina_id'
   add_foreign_key 'inventarios', 'local_de_aplicacaos'
   add_foreign_key 'local_de_aplicacaos', 'localidades', column: 'endereco_id'
   add_foreign_key 'local_de_aplicacaos', 'pessoas', column: 'responsavel_id'

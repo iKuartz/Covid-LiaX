@@ -5,7 +5,7 @@ class CreatePessoas < ActiveRecord::Migration[7.0]
     create_table :pessoas do |t|
       t.string :nome
       t.string :cpf
-      t.integer :idade
+      t.date :data_nascimento
       t.boolean :grupo_risco
       t.text :comorbidade
       t.string :telefone

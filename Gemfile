@@ -73,6 +73,9 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'activeadmin'
 gem 'bcrypt'
+gem 'draper'
 gem 'jwt'
 gem 'react-rails'
+gem 'sass-rails'
