@@ -6,13 +6,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path
-    else
-      render :new
+    @existing = User.find_by username:user_params[:username]
+    if @existing.nil? 
+      @user = User.new(user_params)
+      if @user.save
+        redirect_to root_path
+      else
+        render :new
+      end
+      return
     end
+    message = "Este nome de usuário já existe."
+    redirect_to login_path, notice: message
   end
 
   def show
