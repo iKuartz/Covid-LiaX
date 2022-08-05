@@ -10,8 +10,8 @@ local3 = Localidade.create(estado: 'São Paulo', cidade: 'Engenheiro Coelho', ba
                            rua: 'Rua Antônio Batistela', numero: 100, complemento: 'Prédio 2')
 local4 = Localidade.create(estado: 'Mato Grosso', cidade: 'Cuiabá', bairro: 'Morada da Serra', rua: 'Av. das Torres',
                            numero: 59, complemento: 'Unidade 5')
-pessoa1 = Pessoa.create(nome: 'Adamastor Rubens Maximus', cpf: '648.928.977-03', data_nascimento: '2000 - 02 - 20',
-                        grupo_risco: false, telefone: '5553-4242', endereco_id: local1.id, email: 'rubens.maximus@vacinado.com')
+pessoa1 = Pessoa.create(nome: 'Adamastor Rubens Maximus', cpf: '648.928.977-03', data_nascimento: '2000-02-20',
+                        grupo_risco: false, telefone: '5553-5791', endereco_id: local1.id, email: 'rubens.maximus@vacinado.com')
 pessoa2 = Pessoa.create(nome: 'Eleanor Bärchen', cpf: '000.012.354-61', data_nascimento: '1967-11-07', grupo_risco: true,
                         comorbidade: 'Pulmão direito comprometido por pneumonia na adolescência', telefone: '5554-4242', endereco_id: local2.id,
                         email: 'Elly_Baerchy_uwu@vacinado.com')
@@ -35,8 +35,12 @@ detalhes1 = DetalhesDaVacina.create(nome_da_vacina: 'Oxford/Covishield (Fiocruz 
                                     interacoes_medicamentosas: 'Não tomar aspirina nas próximas 48h.', permitidas: true)
 lote1 = Lote.create(codigo: 'AZ784912-X', vacina_do_lote_id: detalhes1.id, fabricante_id: fabricante1.id, quantidade: 200,
                     destino_do_lote_id: local_de_aplicacao1.id)
+lote2 = Lote.create(codigo: 'AZ725763-A', vacina_do_lote_id: detalhes1.id, fabricante_id: fabricante2.id, quantidade: 100,
+                    destino_do_lote_id: local_de_aplicacao2.id)
 imunizante1 = Imunizante.create(local_de_aplicacao_id: local_de_aplicacao1.id, data_de_aplicacao: '2021-06-13', paciente_id: pessoa3.id,
                                 lote_id: lote1.id, nro_da_dose: 1)
+imunizante1 = Imunizante.create(local_de_aplicacao_id: local_de_aplicacao2.id, data_de_aplicacao: '2021-09-15', paciente_id: pessoa3.id,
+                                lote_id: lote2.id, nro_da_dose: 2)
 inventario1 = Inventario.create(vacina_id: detalhes1.id, quantidade: 500, local_de_aplicacao_id: local_de_aplicacao2.id)
 restricao1 = Restricao.create(primeira_dose: 1, segunda_dose: 1, terceira_dose: 2, quarta_dose: 3)
 # rubocop:enable Lint/UselessAssignment, Layout/LineLength
