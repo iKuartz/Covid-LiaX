@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root 'sessions#home'
 
   resources :users, only: %i[new create edit update show destroy]
