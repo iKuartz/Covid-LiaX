@@ -76,3 +76,5 @@ end
 gem 'bcrypt'
 gem 'jwt'
 gem 'react-rails'
+gem 'activeadmin'
+gem 'draper'
