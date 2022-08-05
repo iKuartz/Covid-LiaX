@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/MethodLength
+
 class UsersController < ApplicationController
   def new
     @user = User.new
   end
 
   def create
-    @existing = User.find_by username:user_params[:username]
-    if @existing.nil? 
+    @existing = User.find_by username: user_params[:username]
+    if @existing.nil?
       @user = User.new(user_params)
       if @user.save
         redirect_to root_path
@@ -16,7 +18,7 @@ class UsersController < ApplicationController
       end
       return
     end
-    message = "Este nome de usuário já existe."
+    message = 'Este nome de usuário já existe.'
     redirect_to login_path, notice: message
   end
 
@@ -30,3 +32,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password)
   end
 end
+# rubocop:enable Metrics/MethodLength
