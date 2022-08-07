@@ -234,7 +234,7 @@ ActiveAdmin.setup do |config|
   #
   config.namespace :admin do |admin|
     admin.build_menu :utility_navigation do |menu|
-      menu.add label: 'My Great Website', url: 'http://www.mygreatwebsite.com', html_options: { target: :blank }
+      menu.add label: 'CoviD Dashboard - LiaX', url: 'https://covid-liax.herokuapp.com/', html_options: { target: :blank }
       menu.add label: 'Logout', url: '/logout', html_options: { target: :blank }
     end
   end
