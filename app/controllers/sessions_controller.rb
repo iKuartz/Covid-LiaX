@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if !!@user && @user.authenticate(params[:password])
 
       session[:user_id] = @user.id
-      redirect_to '/admin'
+      redirect_to '/dashboard'
     else
 
       message = 'Seu nome de usuário ou senha estão incorretos. Verifique-os, e tente novamente.'
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def login
-    redirect_to '/admin' unless session[:user_id].nil?
+    redirect_to '/dashboard' unless session[:user_id].nil?
   end
 
   def destroy
