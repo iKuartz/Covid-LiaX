@@ -3,4 +3,5 @@
 class Pessoa < ApplicationRecord
   has_many :imunizante
   belongs_to :local_de_aplicacao
+  belongs_to :fabricante
 end
