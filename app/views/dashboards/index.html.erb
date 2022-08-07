@@ -1,0 +1,63 @@
+<table class="table-auto">
+  <thead> 
+    <tr> 
+      <th> Nome </th>
+      <th> Email </th>
+      <th> CPF </th>
+      <th> Data de Nascimento </th>
+      <th> Grupo de Risco </th>
+      <th> Comorbidade </th>
+      <th> Telefone </th>
+    </tr>
+  </thead>
+  <tbody> 
+    <%Pessoa.all.limit(4).map do |pessoa|%>
+      <tr> 
+        <td><%=pessoa.nome%></td>
+        <td><%=pessoa.email%></td>
+        <td><%=pessoa.cpf%></td>
+        <td><%=pessoa.data_nascimento%></td>
+        <%if pessoa.grupo_risco%>
+          <td>Sim</td>
+          <td><%=pessoa.comorbidade%></td>
+        <%else%>
+          <td> Não </td>
+          <td> Não Possui </td>
+        <%end%>
+        <td><%=pessoa.telefone%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<table class="table-auto">
+  <thead> 
+    <tr> 
+      <th> Nome </th>
+      <th> Email </th>
+      <th> CPF </th>
+      <th> Data de Nascimento </th>
+      <th> Grupo de Risco </th>
+      <th> Comorbidade </th>
+      <th> Telefone </th>
+    </tr>
+  </thead>
+  <tbody> 
+    <%Pessoa.all.limit(4).map do |pessoa|%>
+      <tr> 
+        <td><%=pessoa.nome%></td>
+        <td><%=pessoa.email%></td>
+        <td><%=pessoa.cpf%></td>
+        <td><%=pessoa.data_nascimento%></td>
+        <%if pessoa.grupo_risco%>
+          <td>Sim</td>
+          <td><%=pessoa.comorbidade%></td>
+        <%else%>
+          <td> Não </td>
+          <td> Não Possui </td>
+        <%end%>
+        <td><%=pessoa.telefone%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
