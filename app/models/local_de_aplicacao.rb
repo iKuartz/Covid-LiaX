@@ -2,6 +2,6 @@
 
 class LocalDeAplicacao < ApplicationRecord
   has_many :imunizante
-  has_one :pessoa, foreign_key: 'responsavel_id', class_name: 'Pessoa'
-  has_one :local, foreign_key: 'endereco_id', class_name: 'Local'
+  has_one :pessoa, foreign_key: 'id', class_name: 'Pessoa'
+  has_one :local, foreign_key: 'id', class_name: 'Localidade'
 end
