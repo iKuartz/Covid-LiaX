@@ -5,40 +5,39 @@
 ActiveAdmin.register_page 'Dashboard' do
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
-  content title: proc { I18n.t('active_admin.dashboard') } do
+  content do
     columns do
       column do
         panel 'Pessoas' do
-          table class:"table-auto" do
+          table class: 'table-auto' do
             thead do
               tr do
-                th "Nome"
-                th "Email"
-                th "CPF"
-                th "Data de Nascimento"
-                th "Grupo de Risco"
-                th "Comorbidade"
-                th "Telefone"
+                th 'Nome'
+                th 'Email'
+                th 'CPF'
+                th 'Data de Nascimento'
+                th 'Grupo de Risco'
+                th 'Comorbidade'
+                th 'Telefone'
               end
             end
             tbody do
               Pessoa.all.limit(4).map do |pessoa|
                 tr do
-                  td "#{pessoa.nome}"
-                  td "#{pessoa.email}"
-                  td "#{pessoa.cpf}"
-                  td "#{pessoa.data_nascimento}"
+                  td pessoa.nome.to_s
+                  td pessoa.email.to_s
+                  td pessoa.cpf.to_s
+                  td pessoa.data_nascimento.to_s
                   if pessoa.grupo_risco
                     td 'Sim'
-                    td "#{pessoa.comorbidade}"
+                    td pessoa.comorbidade.to_s
                   else
-                    td "Não"
-                    td "Não Possui"
+                    td 'Não'
+                    td 'Não Possui'
                   end
-                  td "#{pessoa.telefone}"
-
+                  td pessoa.telefone.to_s
                 end
-              end  
+              end
             end
           end
         end
@@ -46,7 +45,7 @@ ActiveAdmin.register_page 'Dashboard' do
 
       column do
         panel 'Imunizantes' do
-          table  do
+          table do
             Imunizante.all.limit(3).map do |imunizante|
               td "Local de aplicação: #{imunizante.local_de_aplicacao.nome_do_local}"
               td "Paciente: #{imunizante.pessoa.nome}"
@@ -62,7 +61,7 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel 'Fabricante' do
-          table  do
+          table do
             Fabricante.all.limit(4).map do |fabricante|
               td "Responsável: #{fabricante.pessoa.nome}"
               td "Nome do fabricante: #{fabricante.nome}"
@@ -78,14 +77,14 @@ ActiveAdmin.register_page 'Dashboard' do
 
       column do
         panel 'Locais de Aplicação' do
-          table  do
+          table do
             LocalDeAplicacao.all.limit(3).map do |local|
               td "Nome do local: #{local.nome_do_local}"
               td "Responsável: #{local.pessoa.nome}"
               if local.ativo
-                td "Local ativo"
+                td 'Local ativo'
               else
-                td "Local desativado"
+                td 'Local desativado'
               end
               td "CNPJ: #{local.cnpj}"
               td "Telefone: #{local.telefone}"
