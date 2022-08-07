@@ -9,20 +9,36 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel 'Pessoas' do
-          ul class: 'tabela_dashboard' do
-            Pessoa.all.limit(4).map do |pessoa|
-              li "Nome: #{pessoa.nome}"
-              li "Email: #{pessoa.email}"
-              li "CPF: #{pessoa.cpf}"
-              li "Data de Nascimento: #{pessoa.data_nascimento}"
-              if pessoa.grupo_risco
-                li 'Pertence a grupo de risco?: Sim.'
-                li "Comorbidade: #{pessoa.comorbidade}"
-              else
-                li 'Pertence a grupo de risco?: Não.'
+          table class:"table-auto" do
+            thead do
+              tr do
+                th "Nome"
+                th "Email"
+                th "CPF"
+                th "Data de Nascimento"
+                th "Grupo de Risco"
+                th "Comorbidade"
+                th "Telefone"
               end
-              li "Telefone de contato: #{pessoa.telefone}"
-              br
+            end
+            tbody do
+              Pessoa.all.limit(4).map do |pessoa|
+                tr do
+                  td "#{pessoa.nome}"
+                  td "#{pessoa.email}"
+                  td "#{pessoa.cpf}"
+                  td "#{pessoa.data_nascimento}"
+                  if pessoa.grupo_risco
+                    td 'Sim'
+                    td "#{pessoa.comorbidade}"
+                  else
+                    td "Não"
+                    td "Não Possui"
+                  end
+                  td "#{pessoa.telefone}"
+
+                end
+              end  
             end
           end
         end
@@ -30,13 +46,13 @@ ActiveAdmin.register_page 'Dashboard' do
 
       column do
         panel 'Imunizantes' do
-          ul class: 'tabela_dashboard' do
+          table  do
             Imunizante.all.limit(3).map do |imunizante|
-              li "Local de aplicação: #{imunizante.local_de_aplicacao.nome_do_local}"
-              li "Paciente: #{imunizante.pessoa.nome}"
-              li "Lote: #{imunizante.lote.codigo}"
-              li "Data da aplicação: #{imunizante.data_de_aplicacao}"
-              li "Número da dose: #{imunizante.nro_da_dose}"
+              td "Local de aplicação: #{imunizante.local_de_aplicacao.nome_do_local}"
+              td "Paciente: #{imunizante.pessoa.nome}"
+              td "Lote: #{imunizante.lote.codigo}"
+              td "Data da aplicação: #{imunizante.data_de_aplicacao}"
+              td "Número da dose: #{imunizante.nro_da_dose}"
               br
             end
           end
@@ -46,14 +62,14 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel 'Fabricante' do
-          ul class: 'tabela_dashboard' do
+          table  do
             Fabricante.all.limit(4).map do |fabricante|
-              li "Responsável: #{fabricante.pessoa.nome}"
-              li "Nome do fabricante: #{fabricante.nome}"
-              li "CNPJ: #{fabricante.cnpj}"
-              li "Telefone: #{fabricante.telefone}"
-              li "Email: #{fabricante.email}"
-              li "Endereço: #{fabricante.local.estado}, #{fabricante.local.cidade}, #{fabricante.local.bairro}, #{fabricante.local.rua}, #{fabricante.local.numero}, #{fabricante.local.complemento}"
+              td "Responsável: #{fabricante.pessoa.nome}"
+              td "Nome do fabricante: #{fabricante.nome}"
+              td "CNPJ: #{fabricante.cnpj}"
+              td "Telefone: #{fabricante.telefone}"
+              td "Email: #{fabricante.email}"
+              td "Endereço: #{fabricante.local.estado}, #{fabricante.local.cidade}, #{fabricante.local.bairro}, #{fabricante.local.rua}, #{fabricante.local.numero}, #{fabricante.local.complemento}"
               br
             end
           end
@@ -62,19 +78,19 @@ ActiveAdmin.register_page 'Dashboard' do
 
       column do
         panel 'Locais de Aplicação' do
-          ul class: 'tabela_dashboard' do
+          table  do
             LocalDeAplicacao.all.limit(3).map do |local|
-              li "Nome do local: #{local.nome_do_local}"
-              li "Responsável: #{local.pessoa.nome}"
+              td "Nome do local: #{local.nome_do_local}"
+              td "Responsável: #{local.pessoa.nome}"
               if local.ativo
-                li "Local ativo"
+                td "Local ativo"
               else
-                li "Local desativado"
+                td "Local desativado"
               end
-              li "CNPJ: #{local.cnpj}"
-              li "Telefone: #{local.telefone}"
-              li "Email: #{local.email}"
-              li "Endereço: #{local.local.estado}, #{local.local.cidade}, #{local.local.bairro}, #{local.local.rua}, #{local.local.numero}, #{local.local.complemento}"
+              td "CNPJ: #{local.cnpj}"
+              td "Telefone: #{local.telefone}"
+              td "Email: #{local.email}"
+              td "Endereço: #{local.local.estado}, #{local.local.cidade}, #{local.local.bairro}, #{local.local.rua}, #{local.local.numero}, #{local.local.complemento}"
               br
             end
           end
