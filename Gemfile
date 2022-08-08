@@ -78,6 +78,7 @@ gem 'bcrypt'
 gem 'draper'
 gem 'jwt'
 gem 'react-rails'
+gem 'webpacker'
 gem 'sass-rails'
 
 gem 'tailwindcss-rails', '~> 2.0'
