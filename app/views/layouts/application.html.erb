@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-50">
+    <header>
+      <div class="text-center text-gray-800 py-10 px-6">
+        <h1><a href="/" class="text-5xl font-bold mt-0 mb-6">Covid tracker app - LiaX</a></h1>
+      </div>
+      <div class="text-right text-gray-800 px-6">
+        <%unless session[:user_id].nil?%>
+          <a href="/logout" class="text-2xl font-bold mt-0 mb-6">Log Out</a>
+        <%end%>
+      </div>
+    </header>
+    <main class="container mx-auto">
       <%= yield %>
     </main>
+    <footer class="text-gray-600 body-font">
+  <div class="container px-5 py-8 mx-auto flex justify-center sm:flex-row flex-col">
+    <a href="https://www.liax.com.br/" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">LiaX
+    </a>
+    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 Ivan Barbosa da Silva —
+    </p>
+  </div>
+</footer>
   </body>
 </html>
