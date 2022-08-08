@@ -1,63 +1,132 @@
-<table class="table-auto">
-  <thead> 
-    <tr> 
-      <th> Nome </th>
-      <th> Email </th>
-      <th> CPF </th>
-      <th> Data de Nascimento </th>
-      <th> Grupo de Risco </th>
-      <th> Comorbidade </th>
-      <th> Telefone </th>
-    </tr>
-  </thead>
-  <tbody> 
-    <%Pessoa.all.limit(4).map do |pessoa|%>
-      <tr> 
-        <td><%=pessoa.nome%></td>
-        <td><%=pessoa.email%></td>
-        <td><%=pessoa.cpf%></td>
-        <td><%=pessoa.data_nascimento%></td>
-        <%if pessoa.grupo_risco%>
-          <td>Sim</td>
-          <td><%=pessoa.comorbidade%></td>
-        <%else%>
-          <td> Não </td>
-          <td> Não Possui </td>
+<div class="py-4">
+  <h2 class="text-center text-5xl mb-8"> Pessoas </h2>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400"> 
+        <tr> 
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Pessoa </th>
+          <th scope="col" class="py-3 px-6"> Email </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> CPF </th>
+          <th scope="col" class="py-3 px-6"> Data de Nascimento </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Grupo de Risco </th>
+          <th scope="col" class="py-3 px-6"> Comorbidade </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Telefone </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <%Pessoa.all.limit(4).map do |pessoa|%>
+          <tr class="border-b border-gray-200 dark:border-gray-700"> 
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"><%=pessoa.nome%></th>
+            <td class="py-4 px-6"><%=pessoa.email%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=pessoa.cpf%></td>
+            <td class="py-4 px-6"><%=pessoa.data_nascimento%></td>
+            <%if pessoa.grupo_risco%>
+              <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800">Sim</td>
+              <td class="py-4 px-6"><%=pessoa.comorbidade%></td>
+            <%else%>
+              <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"> Não </td>
+              <td class="py-4 px-6"> Não Possui </td>
+            <%end%>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=pessoa.telefone%></td>
+          </tr>
         <%end%>
-        <td><%=pessoa.telefone%></td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
-
-<table class="table-auto">
-  <thead> 
-    <tr> 
-      <th> Nome </th>
-      <th> Email </th>
-      <th> CPF </th>
-      <th> Data de Nascimento </th>
-      <th> Grupo de Risco </th>
-      <th> Comorbidade </th>
-      <th> Telefone </th>
-    </tr>
-  </thead>
-  <tbody> 
-    <%Pessoa.all.limit(4).map do |pessoa|%>
-      <tr> 
-        <td><%=pessoa.nome%></td>
-        <td><%=pessoa.email%></td>
-        <td><%=pessoa.cpf%></td>
-        <td><%=pessoa.data_nascimento%></td>
-        <%if pessoa.grupo_risco%>
-          <td>Sim</td>
-          <td><%=pessoa.comorbidade%></td>
-        <%else%>
-          <td> Não </td>
-          <td> Não Possui </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="py-4">
+  <h2 class="text-center text-5xl mb-8"> Doses </h2>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+        <tr> 
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Vacina da dose </th>
+          <th scope="col" class="py-3 px-6"> Local de aplicação </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Paciente </th>
+          <th scope="col" class="py-3 px-6"> Lote </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Data de aplicação </th>
+          <th scope="col" class="py-3 px-6"> Número da dose </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <%Imunizante.all.limit(4).map do |imunizante|%>
+          <tr class="border-b border-gray-200 dark:border-gray-700"> 
+            <%lote = imunizante.lote%>
+            <%details = DetalhesDaVacina.find(lote.vacina_do_lote_id)%>
+            <%vaccine_name = details.nome_da_vacina%>
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"><%=vaccine_name%></td>
+            <td class="py-4 px-6"><%=imunizante.local_de_aplicacao.nome_do_local%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=imunizante.pessoa.nome%></td>
+            <td class="py-4 px-6"><%=imunizante.lote.codigo%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=imunizante.data_de_aplicacao%></td>
+            <td class="py-4 px-6"><%=imunizante.nro_da_dose%></td>
+          </tr>
         <%end%>
-        <td><%=pessoa.telefone%></td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="py-4">
+  <h2 class="text-center text-5xl mb-8"> Fabricantes </h2>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+        <tr> 
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Fabricante </th>
+          <th scope="col" class="py-3 px-6"> Responsável pela operação </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> CNPJ </th>
+          <th scope="col" class="py-3 px-6"> Telefone </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Email </th>
+          <th scope="col" class="py-3 px-6"> Endereço </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <%Fabricante.all.limit(4).map do |fabricante|%>
+          <tr class="border-b border-gray-200 dark:border-gray-700"> 
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"><%=fabricante.nome%></th>
+            <td class="py-4 px-6"><%=fabricante.pessoa.nome%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=fabricante.cnpj%></td>
+            <td class="py-4 px-6"><%=fabricante.telefone%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=fabricante.email%></td>
+            <td class="py-4 px-6"><%=fabricante.local.estado%>, <%=fabricante.local.cidade%>, <%=fabricante.local.bairro%>, <%=fabricante.local.rua%>, <%=fabricante.local.numero%>, <%=fabricante.local.complemento%></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="py-4">
+<h2 class="text-center text-5xl mb-8"> Locais de aplicação </h2>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+        <tr> 
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Local de Aplicação </th>
+          <th scope="col" class="py-3 px-6"> Responsável </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Local ativo </th>
+          <th scope="col" class="py-3 px-6"> CNPJ </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Telefone </th>
+          <th scope="col" class="py-3 px-6"> Email </th>
+          <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> Endereço </th>
+        </tr>
+      </thead>
+      <tbody> 
+        <%LocalDeAplicacao.all.limit(4).map do |local|%>
+          <tr class="border-b border-gray-200 dark:border-gray-700"> 
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800"><%=local.nome_do_local%></th>
+            <td class="py-4 px-6"><%=local.pessoa.nome%></td>
+            <%if local.ativo%>
+              <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800">Sim</td>
+            <%else%>
+              <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800">Não</td>
+            <%end%>
+            <td class="py-4 px-6"><%=local.cnpj%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=local.telefone%></td>
+            <td class="py-4 px-6"><%=local.email%></td>
+            <td class="py-4 px-6 bg-gray-50 dark:bg-gray-800"><%=local.local.estado%>, <%=local.local.cidade%>, <%=local.local.bairro%>, <%=local.local.rua%>, <%=local.local.numero%>, <%=local.local.complemento%></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
